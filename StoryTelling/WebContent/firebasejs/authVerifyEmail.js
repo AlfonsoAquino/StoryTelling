@@ -1,6 +1,7 @@
 function initApp() {
     // Listening for auth state changes.
     // [START authstatelistener]
+	var user= firebase.auth().currentUser;
     firebase.auth().onAuthStateChanged(function(user) {
       // [START_EXCLUDE silent]
       // [END_EXCLUDE]

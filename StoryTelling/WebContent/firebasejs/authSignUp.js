@@ -13,7 +13,12 @@ function handleSignUp() {
       // Sign in with email and pass.
       // [START createwithemail]
       firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-    	  window.location = "index.html";
+    	  var user= firebase.auth().currentUser;
+    	  user.sendEmailVerification().then(function() {
+    	 window.location = "index.html";
+    	  }).catch(function(error) {
+    	    // An error happened.
+    	  });
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
