@@ -17,6 +17,8 @@ function toggleSignIn() {
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+        	  var user= firebase.auth().currentUser;
+        	alert(user.email);
     	    window.location = "modificaAlbum.jsp";
       }).catch(function(error) {
           // Handle Errors here.
