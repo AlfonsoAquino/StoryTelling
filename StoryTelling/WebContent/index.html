@@ -48,7 +48,20 @@
 <!-- Firebase -->
 
 <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
-<script src="auth.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCsKCn5aGTzgmWCM2HdWRv2cx5-XIdZFS4",
+    authDomain: "storytelling-77786.firebaseapp.com",
+    databaseURL: "https://storytelling-77786.firebaseio.com",
+    projectId: "storytelling-77786",
+    storageBucket: "storytelling-77786.appspot.com",
+    messagingSenderId: "492931816066"
+  };
+  firebase.initializeApp(config);
+</script>
+	<script src="js/main.js"></script>
+<script src="firebasejs/authSignIn.js"></script>
 
 </head>
 <body>
@@ -93,8 +106,6 @@
 
 	</div>
 	<div id="dropDownSelect1"></div>
-
-	<script src="js/main.js"></script>
 			
 			
 </body>

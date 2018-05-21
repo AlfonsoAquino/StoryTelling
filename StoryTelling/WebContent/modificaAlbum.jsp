@@ -57,6 +57,20 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCsKCn5aGTzgmWCM2HdWRv2cx5-XIdZFS4",
+    authDomain: "storytelling-77786.firebaseapp.com",
+    databaseURL: "https://storytelling-77786.firebaseio.com",
+    projectId: "storytelling-77786",
+    storageBucket: "storytelling-77786.appspot.com",
+    messagingSenderId: "492931816066"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="firebasejs/authVerifyEmail.js"></script>
 
 <title>Home</title>
 </head>
