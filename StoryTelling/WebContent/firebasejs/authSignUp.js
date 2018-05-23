@@ -2,14 +2,6 @@
 function handleSignUp() {
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
-      if (email.length < 4) {
-    	 
-    	  return;
-      }
-      if (password.length < 6) {
-    	  
-        return;
-      }
       // Sign in with email and pass.
       // [START createwithemail]
       firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
@@ -18,20 +10,53 @@ function handleSignUp() {
     	 window.location = "index.html";
     	  }).catch(function(error) {
     	    // An error happened.
+    		  alert("An error happened:", errorMessage)
     	  });
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
+        
+        switch (error.code) {
+        case "auth/wrong-password":
+      	  var thisAlert = $("#password").parent();
+          	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+          	$('#password').focus(function(){
+          		$(thisAlert).removeClass('alert-validate');
+          	});
+          break;
+        case "auth/user-not-found":
+      	  var thisAlert = $("#email").parent();
+        	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+        	$('#email').focus(function(){
+        		$(thisAlert).removeClass('alert-validate');
+        	});
+          break;
+        case "auth/invalid-email":
+      	  var thisAlert = $("#email").parent();
+          	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+          	$('#email').focus(function(){
+          		$(thisAlert).removeClass('alert-validate');
+          	});
+          break;
+        case "auth/email-already-in-use":
+        	 var thisAlert = $("#email").parent();
+           	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+           	$('#email').focus(function(){
+           		$(thisAlert).removeClass('alert-validate');
+           	});
+        	break;
+        case "auth/weak-password":
         	var thisAlert = $("#password").parent();
         	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
-        } else {
-        	var thisAlert = $("#email").parent();
-        	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
-        	
-        }
+        	$('#password').focus(function(){
+          		$(thisAlert).removeClass('alert-validate');
+          	});
+        	break;
+        default:
+          alert("Error logging user in:", errorMessage);
+      } 
         console.log(error);
         // [END_EXCLUDE]
       });

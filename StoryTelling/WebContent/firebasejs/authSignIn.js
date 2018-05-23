@@ -6,14 +6,7 @@ function toggleSignIn() {
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
-        if (email.length < 4) {
-          tellAppInventor('Please enter an email address.');
-          return;
-        }
-        if (password.length < 4) {
-          tellAppInventor('Please enter a password.');
-          return;
-        }
+       
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
@@ -21,15 +14,35 @@ function toggleSignIn() {
         	alert(user.email);
     	    window.location = "modificaAlbum.jsp";
       }).catch(function(error) {
-          // Handle Errors here.
+//          // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           // [START_EXCLUDE]
-          if (errorCode === 'auth/wrong-password') {
-            //tellAppInventor('Wrong password.');
-          } else {
-           // tellAppInventor(errorMessage);
-          }
+          switch (error.code) {
+          case "auth/wrong-password":
+        	  var thisAlert = $("#password").parent();
+            	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+            	$('#password').focus(function(){
+            		$(thisAlert).removeClass('alert-validate');
+            	});
+            break;
+          case "auth/user-not-found":
+        	  var thisAlert = $("#email").parent();
+          	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+          	$('#email').focus(function(){
+          		$(thisAlert).removeClass('alert-validate');
+          	});
+            break;
+          case "auth/invalid-email":
+        	  var thisAlert = $("#email").parent();
+            	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+            	$('#email').focus(function(){
+            		$(thisAlert).removeClass('alert-validate');
+            	});
+            break;
+          default:
+            alert("Error logging user in:", errorMessage);
+        }
           console.log(error);
           document.getElementById('quickstart-sign-in').disabled = false;
           // [END_EXCLUDE]
@@ -38,7 +51,6 @@ function toggleSignIn() {
       }
    //   document.getElementById('quickstart-sign-in').disabled = true;
     }
-
 function initApp() {
     // Listening for auth state changes.
     // [START authstatelistener]
