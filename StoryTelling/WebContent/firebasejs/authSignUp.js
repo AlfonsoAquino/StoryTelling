@@ -3,11 +3,11 @@ function handleSignUp() {
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
       if (email.length < 4) {
-    	 // var thisAlert = $("#email").parent();
-    	//  $(thisAlert).addClass('alert-validate');
+    	 
     	  return;
       }
-      if (password.length < 4) {
+      if (password.length < 6) {
+    	  
         return;
       }
       // Sign in with email and pass.
@@ -25,9 +25,12 @@ function handleSignUp() {
         var errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
+        	var thisAlert = $("#password").parent();
+        	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
         } else {
-          alert(errorMessage);
+        	var thisAlert = $("#email").parent();
+        	$(thisAlert).addClass('alert-validate').attr('data-validate',errorMessage);
+        	
         }
         console.log(error);
         // [END_EXCLUDE]
@@ -86,3 +89,4 @@ function initApp() {
  window.onload = function() {
     initApp();
   };
+  

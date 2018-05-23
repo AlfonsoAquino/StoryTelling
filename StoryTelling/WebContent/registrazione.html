@@ -7,18 +7,23 @@
 <title>Email/Password Authentication Example</title>
 <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCsKCn5aGTzgmWCM2HdWRv2cx5-XIdZFS4",
-    authDomain: "storytelling-77786.firebaseapp.com",
-    databaseURL: "https://storytelling-77786.firebaseio.com",
-    projectId: "storytelling-77786",
-    storageBucket: "storytelling-77786.appspot.com",
-    messagingSenderId: "492931816066"
-  };
-  firebase.initializeApp(config);
+	// Initialize Firebase
+	var config = {
+		apiKey : "AIzaSyCsKCn5aGTzgmWCM2HdWRv2cx5-XIdZFS4",
+		authDomain : "storytelling-77786.firebaseapp.com",
+		databaseURL : "https://storytelling-77786.firebaseio.com",
+		projectId : "storytelling-77786",
+		storageBucket : "storytelling-77786.appspot.com",
+		messagingSenderId : "492931816066"
+	};
+	firebase.initializeApp(config);
 </script>
-<script src="js/main.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>
+<!--<script src="js/main.js"></script>-->
+<script src="js/signUpControll.js"></script>
 <script src="firebasejs/authSignUp.js"></script>
 <!-- Material Design Theming -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -76,7 +81,7 @@
 						</div>
 
 						<div class="form-group validate-input"
-							data-validate="password is required">
+							data-validate="password requires at least 6 char">
 							<label for="exampleFormControlInput1">Password</label> <input
 								class="input100" style="display: inline; width: auto;"
 								type="password" id="password" name="password"
